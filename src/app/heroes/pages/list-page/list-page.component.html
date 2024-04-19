@@ -1,0 +1,13 @@
+<div class="heroes-list">
+    <h1 class="text-center mt-10">
+        Listado de héroes
+    </h1>
+    <div class="cards-grid">
+        <app-card 
+            class="card" 
+            *ngFor="let hero of heroes"
+            [hero]="hero"
+            >
+        </app-card>
+    </div>
+</div>

@@ -1,0 +1,26 @@
+<mat-sidenav-container fullscreen class="sidenav-container">
+  <mat-sidenav color="primary" #sidenav mode="push" [ngStyle]="{ width: '250px' }">
+    <mat-nav-list>
+    <button class="ml-5" mat-icon-button (click)="sidenav.toggle()">
+        <mat-icon>close</mat-icon>
+    </button>
+    <mat-list-item 
+      *ngFor="let item of sidebarItems"
+      [routerLink]="item.url"
+      (click)="sidenav.toggle()"
+    >
+      <mat-icon matListItemIcon>{{ item.icon }}</mat-icon>
+      {{ item.label }}
+    </mat-list-item>
+
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button mat-icon-button (click)="sidenav.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span class="ml-5">Heroes</span>
+    </mat-toolbar>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>

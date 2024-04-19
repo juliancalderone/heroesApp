@@ -1,1 +1,36 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+// Generic styles
+
+.m-10 { margin: 10px; }
+
+.ml-5 { margin-left: 5px; }
+
+.mt-10 { margin-top: 10px !important; }
+
+.mb-10 { margin-bottom: 10px !important; }
+
+.text-center { text-align: center; }	
+
+.cards-grid {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    gap: 1rem;
+    padding: 1rem;
+}
+
+@media (min-width: 600px) {
+    .cards-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (min-width: 900px) {
+    .cards-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+
+@media (min-width: 1200px) {
+    .cards-grid { grid-template-columns: repeat(4, 1fr); }
+}
