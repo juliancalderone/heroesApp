@@ -10,7 +10,7 @@ import { MaterialModule } from '../material/material.module';
 import { HeroesService } from './services/heroes.service';
 import { CardComponent } from './components/card/card.component';
 import { HeroImagePipe } from './pipes/hero-image.pipe';
-
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -19,12 +19,13 @@ import { HeroImagePipe } from './pipes/hero-image.pipe';
     ListPageComponent,
     NewPageComponent,
     CardComponent,
-    HeroImagePipe
+    HeroImagePipe,
   ],
   imports: [
     CommonModule,
     HeroesRoutingModule,
     MaterialModule,
+    SharedModule,
   ],
   providers: [
     HeroesService,

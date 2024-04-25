@@ -1,1 +1,28 @@
-<p>hero-page works!</p>
+<ng-template #loading>
+    <mat-grid-list cols="1">
+        <mat-grid-tile>
+            <mat-spinner></mat-spinner>
+        </mat-grid-tile>
+    </mat-grid-list>
+</ng-template>
+
+<div class="m-10" *ngIf="hero; else loading">
+    <h1>
+        {{ hero.superhero }}
+    </h1>
+    <h3>
+        {{ hero.alter_ego }}
+    </h3>
+    <mat-chip-option color="accent">{{ hero.publisher }}</mat-chip-option>
+    <div class="cover mt-10" alt="hero.superhero" [ngStyle]="{'background-image': 'url(' + (hero | heroImage) + ')'}">
+    </div>
+    <small>First appearance: {{ hero.first_appearance }}</small>
+    <mat-list role="list">
+        <mat-list-item class="p-0"><span matListItemTitle>Characters:</span></mat-list-item>
+        <mat-list-item *ngFor="let character of hero.characters.split(',').slice(0, 5)" role="listitem">
+            {{ character }}
+            <mat-icon matListItemIcon>stars</mat-icon>
+        </mat-list-item>
+    </mat-list>
+
+</div>

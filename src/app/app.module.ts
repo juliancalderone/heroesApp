@@ -12,10 +12,10 @@ import { HttpClientModule } from '@angular/common/http';
     AppComponent
   ],
   imports: [
-    BrowserModule,
     AppRoutingModule,
-    SharedModule,
+    BrowserModule,
     HttpClientModule,
+    SharedModule,
   ],
   providers: [
     provideAnimationsAsync()
