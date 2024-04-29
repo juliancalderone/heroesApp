@@ -38,3 +38,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 @media (min-width: 1200px) {
     .cards-grid { grid-template-columns: repeat(4, 1fr); }
 }
+
+.mat-mdc-dialog-actions {
+    justify-content: space-between !important;
+}

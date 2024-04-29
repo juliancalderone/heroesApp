@@ -12,7 +12,16 @@ import { debounce, debounceTime, switchMap } from 'rxjs';
       background-size: cover;
       background-position: top;
       height: 500px;
-      width: 50%;
+      width: 30%;
+      @media (max-width: 600px) {
+        width: 100%;
+      }
+    }
+    ::ng-deep button {
+      @media (max-width: 600px) {
+        width: 100%;
+        margin-bottom: 1rem;
+      }
     }
   `,
 })

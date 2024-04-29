@@ -11,6 +11,7 @@ import { HeroesService } from './services/heroes.service';
 import { CardComponent } from './components/card/card.component';
 import { HeroImagePipe } from './pipes/hero-image.pipe';
 import { SharedModule } from '../shared/shared.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { SharedModule } from '../shared/shared.module';
     HeroesRoutingModule,
     MaterialModule,
     SharedModule,
+    ReactiveFormsModule,
   ],
   providers: [
     HeroesService,

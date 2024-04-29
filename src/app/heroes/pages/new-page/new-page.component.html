@@ -1,1 +1,55 @@
-<p>new-page works!</p>
+<div class="new-hero">
+    <h2>
+        {{ currentHero.id ? 'Edit' : 'Add' }} hero
+    </h2>
+    <mat-divider class="mb-10"></mat-divider>
+    <form class="form-wrapper" (ngSubmit)="onSubmit()" [formGroup]="heroForm">
+        <img class="cover" [src]="currentHero | heroImage" height="500" width="100%" alt="imagen del héroe" mat-card-image>
+        <mat-form-field class="m-10">
+            <mat-label>Superhero</mat-label>
+            <input required formControlName="superhero" matInput type="text" placeholder="Super heroe" />
+        </mat-form-field>
+        <mat-form-field class="m-10">
+            <mat-label>First appearance</mat-label>
+            <input required formControlName="first_appearance" matInput type="text" placeholder="First appearance" />
+        </mat-form-field>
+        <mat-form-field class="m-10">
+            <mat-label>Alter ego</mat-label>
+            <input required formControlName="alter_ego"  matInput type="text" placeholder="Alter ego" />
+        </mat-form-field>
+        <mat-form-field class="m-10">
+            <mat-label>Publisher</mat-label>
+            <mat-select required formControlName="publisher" placeholder="Publisher">
+                <mat-option *ngFor="let publisher of publisher" [value]="publisher.id">
+                    {{ publisher.desc }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field class="m-10">
+            <mat-label>Characters</mat-label>
+            <input
+              matInput
+              type="text"
+              required
+              formControlName="characters"
+            />
+          </mat-form-field>
+        <mat-form-field class="m-10">
+            <mat-label>Alt img</mat-label>
+            <input formControlName="alt_img"  matInput type="text" placeholder="Alt img" />
+        </mat-form-field>
+    </form>
+    <div class="buttons-wrapper">
+        <button 
+            (click)="onDeleteHero()"
+            *ngIf="currentHero.id" 
+            mat-flat-button color="warn">
+            Delete
+        </button>
+        <span></span>
+        <button (click)="onSubmit()" mat-flat-button color="primary">
+            <mat-icon>save</mat-icon>
+            Save
+        </button>
+    </div>
+</div>
