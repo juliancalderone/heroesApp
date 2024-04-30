@@ -44,6 +44,9 @@ export class HeroesService {
    */
   getSuggestions(term: string): Observable<Hero[]> {
     return this._http.get<Hero[]>(`${this.baseUrl}/heroes?q=${term}&_limit=5`)
+    .pipe(
+      catchError(() => of([]))
+    );
   }
 
   /**
@@ -52,7 +55,7 @@ export class HeroesService {
    * @returns An Observable that emits the added hero.
    */
   addHero(hero: Hero): Observable<Hero> {
-    return this._http.post<Hero>(`${this.baseUrl}/heroes`, hero);
+    return this._http.post<Hero>(`${this.baseUrl}/heroes`, hero)
   }
 
   /**
