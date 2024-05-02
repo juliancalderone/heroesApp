@@ -13,6 +13,20 @@ export class HeroesService {
   private baseUrl = environment.baseUrl;
 
   constructor(private _http: HttpClient) { }
+  
+  /**
+   * Retrieves a paginated list of heroes.
+   * 
+   * @param page The page number.
+   * @param limit The maximum number of heroes per page.
+   * @returns An Observable that emits an array of Hero objects.
+   */
+  getPaginatedHeroes(page: number, limit: number): Observable<Hero[]> {
+    return this._http.get<Hero[]>(`${this.baseUrl}/heroes?_page=${page}&_limit=${limit}`)
+    .pipe(
+      catchError(() => of([]))
+    );
+  }
 
   /**
    * Retrieves the list of heroes from the server.

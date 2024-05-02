@@ -4,11 +4,16 @@
     </h1>
     <app-search-box></app-search-box>
     <div class="cards-grid">
-        <app-card 
-            class="card" 
-            *ngFor="let hero of heroes"
-            [hero]="hero"
-            >
+        <app-card class="card" *ngFor="let hero of heroes" [hero]="hero">
         </app-card>
     </div>
+    <mat-paginator 
+        [length]="totalHeroes" 
+        [pageSize]="pageSize" 
+        [pageSizeOptions]="[5, 10]" 
+        [showFirstLastButtons]="false"
+        aria-label="Select page"
+        (page)="pageChanged($event)"
+        >
+    </mat-paginator>
 </div>
