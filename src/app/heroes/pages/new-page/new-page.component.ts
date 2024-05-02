@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Hero, Publisher } from '../../interfaces/hero.interface';
 import { HeroesService } from '../../services/heroes.service';
-import { EMPTY, debounceTime, pipe, switchMap } from 'rxjs';
+import { EMPTY, switchMap } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from '../../../shared/confirm-dialog/confirm-dialog.component';
@@ -118,7 +118,6 @@ export class NewPageComponent {
       this.heroesService.updateHero( this.currentHero )
         .subscribe( hero => {
           this.showSnackBar(`${ hero.superhero } updated!`);
-          debounceTime(1000);
           this.router.navigate(['/heroes']);
         });
 

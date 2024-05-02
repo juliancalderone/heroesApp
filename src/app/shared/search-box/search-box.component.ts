@@ -45,7 +45,6 @@ export class SearchBoxComponent {
       return;
     }
     const hero: Hero = event.option.value;
-    console.log(hero);
   }
   
 
