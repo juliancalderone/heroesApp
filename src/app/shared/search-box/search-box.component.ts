@@ -1,6 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { Hero } from '../../heroes/interfaces/hero.interface';
-import { Observable, filter, map, of, startWith, switchMap } from 'rxjs';
+import {
+  Observable,
+  debounceTime,
+  distinctUntilChanged,
+  filter,
+  map,
+  of,
+  startWith,
+  switchMap,
+} from 'rxjs';
 import { FormControl } from '@angular/forms';
 import { HeroesService } from '../../heroes/services/heroes.service';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
@@ -13,16 +22,21 @@ import { Router } from '@angular/router';
 })
 export class SearchBoxComponent {
   public searchInput = new FormControl('');
-  public heroes: Hero[] = [];
+  public heroes$: Observable<Hero[]> = of([]);
   public selectedHero?: Hero;
 
   constructor(private heroesService: HeroesService, private router: Router) {}
 
-  searchHero() {
-    const value: string = this.searchInput.value || '';
-    this.heroesService
+  lookUpHero(value: string) {
+    return this.heroesService
       .getSuggestions(value)
-      .subscribe((heroes) => (this.heroes = heroes));
+      .pipe(
+        map((heroes) =>
+          heroes.filter((hero) =>
+            hero.superhero.toLowerCase().includes(value.toLowerCase())
+          ),
+        )
+      );
   }
 
   onSelectedOption(event: MatAutocompleteSelectedEvent): void {
@@ -31,8 +45,14 @@ export class SearchBoxComponent {
       return;
     }
     const hero: Hero = event.option.value;
-    this.searchInput.setValue(hero.superhero);
-    this.selectedHero = hero;
-    this.router.navigate(['/heroes', hero.id]);
+    console.log(hero);
+  }
+  
+
+  ngOnInit() {
+    this.heroes$ = this.searchInput.valueChanges.pipe(
+      debounceTime(300),
+      switchMap((value) => this.lookUpHero(value || '')),
+    );
   }
 }

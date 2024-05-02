@@ -1,9 +1,20 @@
 <div class="search-box">
   <mat-form-field>
     <mat-label>Search heroes</mat-label>
-    <input type="text" matInput [formControl]="searchInput" (input)="searchHero()" [matAutocomplete]="auto" />
-    <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" (optionSelected)="onSelectedOption($event)">
-      <mat-option *ngFor="let hero of heroes" [value]="hero">
+    <input type="text" 
+      matInput 
+      [formControl]="searchInput" 
+      [matAutocomplete]="auto" 
+    />
+    <mat-autocomplete 
+      autoActiveFirstOption 
+      #auto="matAutocomplete"
+      (optionSelected)="onSelectedOption($event)"
+      >
+      <mat-option 
+        *ngFor="let hero of heroes$ | async" 
+        [value]="hero.id"
+        >
         {{ hero.superhero }}
       </mat-option>
     </mat-autocomplete>
