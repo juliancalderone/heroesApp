@@ -2,7 +2,7 @@
     <h1 class="text-center mt-10">
         Heroes list
     </h1>
-    <app-search-box></app-search-box>
+    <app-search-box (heroesFiltered)="updateHeroList($event)"></app-search-box>
     <div class="cards-grid">
         <app-card class="card" *ngFor="let hero of heroes" [hero]="hero">
         </app-card>

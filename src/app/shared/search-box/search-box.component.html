@@ -13,7 +13,7 @@
       >
       <mat-option 
         *ngFor="let hero of heroes$ | async" 
-        [value]="hero.id"
+        [value]="hero"
         >
         {{ hero.superhero }}
       </mat-option>

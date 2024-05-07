@@ -14,6 +14,10 @@ import { ConfirmDialogComponent } from '../../../shared/confirm-dialog/confirm-d
   styles: `
     .new-hero {
       padding: 1rem;
+      .back {
+        display: flex;
+        justify-content: space-between;
+      }
     }
     .form-wrapper {
       display: flex;
@@ -89,6 +93,10 @@ export class NewPageComponent {
     this.snackBar.open(message, 'Done', {
       duration: 2500,
     });
+  }
+
+  onBack() {
+    this.router.navigate(['/heroes']);
   }
 
   onDeleteHero() {

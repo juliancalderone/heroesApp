@@ -24,7 +24,7 @@ export class ListPageComponent {
     this.heroesSubscription = this.heroesService
       .getPaginatedHeroes(this.currentPage, this.pageSize)
       .pipe(
-        catchError(error => {
+        catchError((error) => {
           console.error('Error loading heroes', error);
           return [];
         })
@@ -37,6 +37,10 @@ export class ListPageComponent {
   pageChanged(event: PageEvent) {
     this.currentPage = event.pageIndex + 1;
     this.getHeroes();
+  }
+
+  updateHeroList(heroes: Hero | Hero[]): void {
+    this.heroes = Array.isArray(heroes) ? heroes : [heroes];
   }
 
   ngOnInit(): void {
