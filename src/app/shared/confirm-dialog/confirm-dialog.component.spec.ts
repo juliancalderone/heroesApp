@@ -7,11 +7,15 @@ describe('ConfirmDialogComponent', () => {
   let fixture: ComponentFixture<ConfirmDialogComponent>;
   let component: ConfirmDialogComponent;
 
+  const mockDialogRef = {
+    close: jasmine.createSpy('close')
+  };
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ConfirmDialogComponent],
       providers: [
-        { provide: MatDialogRef, useValue: {} }, 
+        { provide: MatDialogRef, useValue: mockDialogRef }, 
         { provide: MAT_DIALOG_DATA, useValue: {} },
       ]
     })
@@ -24,6 +28,16 @@ describe('ConfirmDialogComponent', () => {
 
   it('ConfirmDialogComponent should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should call onConfirm method', () => {
+    component.onConfirm();
+    expect(mockDialogRef.close).toHaveBeenCalled();
+  });
+
+  it('should call onCancel method', () => {
+    component.onNoClick();
+    expect(mockDialogRef.close).toHaveBeenCalled();
   });
 
 });

@@ -44,4 +44,14 @@ describe('CardComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  it('should show the hero name', () => {
+    const compiled = fixture.nativeElement;
+    expect(compiled.querySelector('mat-card-title').textContent).toContain('Test Hero');
+  });
+
+  it('should show the hero alter ego', () => {
+    const compiled = fixture.nativeElement;
+    expect(compiled.querySelector('mat-card-subtitle').textContent).toContain('Test Alter Ego');
+  });
+
 });

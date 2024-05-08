@@ -147,12 +147,14 @@ describe('HeroesService', () => {
       first_appearance: 'Detective Comics #27',
       characters: 'Bruce Wayne',
     };
-  
+
     service.updateHero(mockHero).subscribe((hero) => {
       expect(hero).toEqual(mockHero);
     });
-  
-    const req = httpMock.expectOne(`${service['baseUrl']}/heroes/${mockHero.id}`);
+
+    const req = httpMock.expectOne(
+      `${service['baseUrl']}/heroes/${mockHero.id}`
+    );
     expect(req.request.method).toBe('PATCH');
     expect(req.request.body).toEqual(mockHero);
     req.flush(mockHero);
@@ -168,7 +170,7 @@ describe('HeroesService', () => {
       first_appearance: 'Detective Comics #27',
       characters: 'Bruce Wayne',
     };
-  
+
     expect(() => {
       service.updateHero(mockHero as Hero);
     }).toThrowError('Hero ID is required');
@@ -176,15 +178,13 @@ describe('HeroesService', () => {
 
   it('should delete a hero by id', () => {
     const id = '1';
-  
+
     service.deleteHeroById(id).subscribe((result) => {
       expect(result).toBeTrue();
     });
-  
+
     const req = httpMock.expectOne(`${service['baseUrl']}/heroes/${id}`);
     expect(req.request.method).toBe('DELETE');
     req.flush({});
   });
-
-  
 });
