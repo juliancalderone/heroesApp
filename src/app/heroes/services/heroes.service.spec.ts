@@ -6,7 +6,6 @@ import {
 import { HeroesService } from './heroes.service';
 
 import { Hero, Publisher } from '../interfaces/hero.interface';
-import { of } from 'rxjs';
 
 describe('HeroesService', () => {
   let service: HeroesService;
@@ -66,7 +65,7 @@ describe('HeroesService', () => {
 
   it('should return a specific hero by id', () => {
     const mockHero: Hero = {
-      id: '1',
+      id: 'dc-batman',
       superhero: 'Batman',
       publisher: Publisher.DcComics,
       alter_ego: 'Bruce Wayne',
@@ -140,7 +139,7 @@ describe('HeroesService', () => {
 
   it('should update a hero', () => {
     const mockHero: Hero = {
-      id: '1',
+      id: 'dc-batman',
       superhero: 'Batman',
       publisher: Publisher.DcComics,
       alter_ego: 'Bruce Wayne',
@@ -177,7 +176,7 @@ describe('HeroesService', () => {
   });
 
   it('should delete a hero by id', () => {
-    const id = '1';
+    const id = 'dc-batman';
 
     service.deleteHeroById(id).subscribe((result) => {
       expect(result).toBeTrue();
@@ -188,3 +187,4 @@ describe('HeroesService', () => {
     req.flush({});
   });
 });
+
